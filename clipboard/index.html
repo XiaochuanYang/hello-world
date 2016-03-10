@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="div">
+
+    </div>
+    <script>
+    document.addEventListener('paste', function(e) {
+      if(e.clipboardData) {
+        for(var i = 0; i < e.clipboardData.items.length; i++) {
+
+          var c = e.clipboardData.items[i];
+          var f = c.getAsFile();
+          var reader = new FileReader();
+          console.log(c)
+          reader.onload = function(e) {
+            div.innerHTML += '<img src="' + e.target.result + '">';
+          }
+          reader.readAsDataURL(f);
+        }
+      }
+    },false);
+    </script>
+  </body>
+</html>
